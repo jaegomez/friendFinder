@@ -1,8 +1,8 @@
 // requiring my friends file
+var friendArray = require("../data/friends.js");
 
-var freindData = require("../data/friends.js");
-
-
+var bodyParser = require('body-parser');
+var path = require('path');
 
 
 
@@ -12,6 +12,7 @@ var freindData = require("../data/friends.js");
 
 module.exports = function(app){
 	app.get('/api/friends', function(req, res){
-		res.json(freindData);
+		// going to display friendData which is info in friends.js in JSON form
+		res.json(friendArray);
 	});
 };

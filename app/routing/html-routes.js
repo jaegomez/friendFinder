@@ -4,14 +4,14 @@ var path = require('path');
 
 module.exports = function (app){
 
-	// direction to home.html file
+	// default USE route that displays home page
 	app.get('/', function(req,res){
-		res.sendFile(path.join(_dirname, "../public/home.html"));
+		res.sendFile(path.join(__dirname, "../public/home.html"));
 	});
 
-	// routing to survey so it grabs my survey html file
+	// GET ROUTE that takes you to survey.html
 	app.get('/survey', function(req,res){
-		res.sendFile(path.join(_dirname, '../public/survey.html'));
+		res.sendFile(path.join(__dirname, '../public/survey.html'));
 	});
 
 };
