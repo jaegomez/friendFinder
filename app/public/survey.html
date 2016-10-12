@@ -137,11 +137,72 @@
             id="submit">SUBMIT</button>
             <div style="margin-top: 30px;"></div>
 
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Congratulations</h4>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
     <footer class="footer">
         <div class="container">
             <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/jaegomez/friendFinder" target="_blank">GitHub Repo</a></p>
         </div>
     </footer>
+
+
+
+
+
+<!-- script below -->
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+        //on click for submit button
+        $('#submit').on('click', function(){
+        
+            var newFriend = {
+                'name': $('#name').val().trim(),
+                'photo': $('#photo').val().trim(),
+                'scores': [$('#q1').val(),$('#q2').val(),$('#q3').val(),$('#q4').val(),$('#q5').val(),$('#q6').val(),$('#q7').val(),$('#q8').val(),$('#q9').val(),$('#q10').val()]
+            };
+            
+            //POST to what ever the url is and add api/friends
+            var currentURL = window.location.origin;
+
+            //sent information to the route of api/friends
+            $.post(currentURL+"/api/friends", newFriend, function(data){
+                
+            })
+                .done(function(data){
+    
+                    //build info into modal, use html to replace previous friend
+                    $('.modal-body').html('<h1> New friend found!</h1>'+
+                                            '<br>'+
+                                            '<h4> '+data.name+ '</h4>'+
+                                            '<img src="'+data.photo+'" width=350px>');
+                    //toggle modal to appear on page
+                    $('#myModal').modal('toggle');
+            });
+        })
+    </script>
 
 </div>
 </body>
